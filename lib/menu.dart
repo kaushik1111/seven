@@ -67,37 +67,37 @@ class _MenuState extends State<Menu> {
             ],
           ),
         ),
-        body: Column(
-            children: [
-              DefaultTabController(
-                  length: 4, // length of tabs
-                  initialIndex: 0  ,
-                  child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: <Widget>[
-                        Container(
-                          margin: EdgeInsets.only(top: 30,),
-                          child: TabBar(
-                            isScrollable: true,
+        body: SingleChildScrollView(
+          child: Column(
+              children: [
+                DefaultTabController(
+                    length: 4, // length of tabs
+                    initialIndex: 0  ,
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: <Widget>[
+                          Container(
+                            margin: EdgeInsets.only(top: 30,),
+                            child: TabBar(
+                              isScrollable: true,
 
 
-                            onTap: (value) {},
-                            tabs: [
-                              Container(margin: EdgeInsets.only(bottom: 10),child: Text('Rounde Trip',style: TextStyle(color: Colors.black,fontSize: 20))),
-                              Container(margin: EdgeInsets.only(bottom: 10),child: Text('One Way',style: TextStyle(color: Colors.black,fontSize: 20))),
-                              Container(margin: EdgeInsets.only(bottom: 10),child: Text('Multiy-city',style: TextStyle(color: Colors.black,fontSize: 20)))
-                            ],
+                              onTap: (value) {},
+                              tabs: [
+                                Container(margin: EdgeInsets.only(bottom: 10),child: Text('Rounde Trip',style: TextStyle(color: Colors.black,fontSize: 20))),
+                                Container(margin: EdgeInsets.only(bottom: 10),child: Text('One Way',style: TextStyle(color: Colors.black,fontSize: 20))),
+                                Container(margin: EdgeInsets.only(bottom: 10),child: Text('Multiy-city',style: TextStyle(color: Colors.black,fontSize: 20)))
+                              ],
+                            ),
                           ),
-                        ),
-                        Container(
-                            margin: const EdgeInsets.only(top: 15,),
-                            height: 450,
-                            padding: const EdgeInsets.all(20),
-                            //height of TabBarView
-                            child: TabBarView(children: <Widget>[
-                              Expanded(
-                                child: Container(
-                                  child: SingleChildScrollView(
+                          Container(
+                              margin: const EdgeInsets.only(top: 15,),
+                              height: 550,
+                              padding: const EdgeInsets.all(20),
+                              //height of TabBarView
+                              child: TabBarView(children: <Widget>[
+                                SingleChildScrollView(
+                                  child: Container(
                                     child: Column(children: [
                                       InkWell(
                                         onTap: () {
@@ -188,11 +188,11 @@ class _MenuState extends State<Menu> {
                                     ]),
                                   ),
                                 ),
-                              ),
 
-                            ]))
-                      ]))
-            ]),
+                              ]))
+                        ]))
+              ]),
+        ),
 
         bottomNavigationBar: BottomNavigationBar(
           iconSize: 20,

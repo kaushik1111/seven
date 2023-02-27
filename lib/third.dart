@@ -80,10 +80,13 @@ class Third extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Row(
+
                         children: [
-                          Column(children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
                             Container(
-                                margin: EdgeInsets.only(left: 5),
+
                                 child: Text(
                                   '06:30 - 15:00',
                                   style: TextStyle(
@@ -91,7 +94,6 @@ class Third extends StatelessWidget {
                                   ),
                                 )),
                             Container(
-                                alignment: Alignment.center,
 
                                 child: Text(
                                   '${snapshot.data![index]['flightname']} Air Lines',
@@ -99,18 +101,16 @@ class Third extends StatelessWidget {
                                     fontSize: 15,
                                   ),
                                 )),
-                            SingleChildScrollView(
-                              child: Container(
-                                  margin: EdgeInsets.only(right: 90),
-                                  child: Text(
-                                    snapshot.data![index]['time'].toString().substring(0,10),
-                                    style: TextStyle(
-                                      fontSize: 15,
-                                    ),
-                                  )),
-                            ),
                             Container(
-                                margin: EdgeInsets.only(right: 78),
+
+                                child: Text(
+                                  snapshot.data![index]['time'].toString().substring(0,10),
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                  ),
+                                )),
+                            Container(
+
                                 child: Text(
                                   s[index%2],
                                   style: TextStyle(
@@ -123,13 +123,14 @@ class Third extends StatelessWidget {
                               child: Text(
                                 snapshot.data![index]['price'].toString(),
                                 style: TextStyle(
-                                    color: Colors.red,
+                                    color: Colors.black,
                                     fontSize: 20,
                                     fontWeight: FontWeight.bold),
                               ),
                             ),
-                          )
+                          ),Text('\$',style: TextStyle(fontSize: 18),)
                         ],
+
                       ),
                     );
                     // return Text(snapshot.data![index]['Country'].toString());
