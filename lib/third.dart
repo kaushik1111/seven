@@ -1,11 +1,13 @@
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 import 'menu.dart';
 
 class Third extends StatelessWidget {
-  const Third({Key? key}) : super(key: key);
-
+  Third({Key? key}) : super(key: key);
+  List s=['EconmayClass','FistClass'];
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -25,7 +27,7 @@ class Third extends StatelessWidget {
                           onPressed: () {
                             Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) {
-                                return const Menu();
+                                return Menu();
                               },
                             ));
                           },
@@ -63,23 +65,23 @@ class Third extends StatelessWidget {
           ),
           body: Container(
             padding: EdgeInsets.only(left: 50, right: 50),
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  Container(
-                    padding: EdgeInsets.all(20),
-                    margin: EdgeInsets.only(
-                      bottom: 20,
-                      top: 15,
-                    ),
-                    decoration: BoxDecoration(
-                      color: Colors.black12,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Column(children: [
+            child: FutureBuilder<dynamic>(builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return
+                  ListView.builder(itemBuilder: (context, index) {
+                    return Container(
+                      padding: EdgeInsets.all(20),
+                      margin: EdgeInsets.only(
+                        bottom: 20,
+                        top: 15,
+                      ),
+                      decoration: BoxDecoration(
+                        color: Colors.black12,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Row(
+                        children: [
+                          Column(children: [
                             Container(
                                 margin: EdgeInsets.only(left: 5),
                                 child: Text(
@@ -89,213 +91,61 @@ class Third extends StatelessWidget {
                                   ),
                                 )),
                             Container(
-                                margin: EdgeInsets.only(left: 15),
+                                alignment: Alignment.center,
+
                                 child: Text(
-                                  'Internationals Air Lines',
+                                  '${snapshot.data![index]['flightname']} Air Lines',
                                   style: TextStyle(
                                     fontSize: 15,
                                   ),
                                 )),
-                            Container(
-                                margin: EdgeInsets.only(right: 90),
-                                child: Text(
-                                  '7h 30m',
-                                  style: TextStyle(
-                                    fontSize: 15,
-                                  ),
-                                )),
+                            SingleChildScrollView(
+                              child: Container(
+                                  margin: EdgeInsets.only(right: 90),
+                                  child: Text(
+                                    snapshot.data![index]['time'].toString().substring(0,10),
+                                    style: TextStyle(
+                                      fontSize: 15,
+                                    ),
+                                  )),
+                            ),
                             Container(
                                 margin: EdgeInsets.only(right: 78),
                                 child: Text(
-                                  'Econmay',
+                                  s[index%2],
                                   style: TextStyle(
                                     fontSize: 15,
                                   ),
                                 )),
                           ]),
-                        ),
-                        Text(
-                          "320",
-                          style: TextStyle(
-                              color: Colors.red,
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold),
-                        )
-                      ],
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(bottom: 20),
-                    padding: EdgeInsets.all(20),
-                    decoration: BoxDecoration(
-                      color: Colors.black12,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Column(children: [
-                            Container(
-                                margin: EdgeInsets.only(left: 2),
-                                child: Text(
-                                  '19:30 - 22:40',
-                                  style: TextStyle(
-                                    fontSize: 25,
-                                  ),
-                                )),
-                            Container(
-                                margin: EdgeInsets.only(right: 20),
-                                child: Text(
-                                  'Swiss Air Lines',
-                                  style: TextStyle(
-                                    fontSize: 15,
-                                  ),
-                                )),
-                            Container(
-                                margin: EdgeInsets.only(right: 85),
-                                child: Text(
-                                  '12h 10m',
-                                  style: TextStyle(
-                                    fontSize: 15,
-                                  ),
-                                )),
-                            Container(
-                                margin: EdgeInsets.only(right: 78),
-                                child: Text(
-                                  'Econmay',
-                                  style: TextStyle(
-                                    fontSize: 15,
-                                  ),
-                                )),
-                          ]),
-                        ),
-                        Text(
-                          "320",
-                          style: TextStyle(
-                              color: Colors.red,
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold),
-                        )
-                      ],
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(bottom: 20),
-                    padding: EdgeInsets.all(20),
-                    decoration: BoxDecoration(
-                      color: Colors.black12,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Column(children: [
-                            Container(
-                                margin: EdgeInsets.only(left: 5),
-                                child: Text(
-                                  '06:30 - 15:00',
-                                  style: TextStyle(
-                                    fontSize: 25,
-                                  ),
-                                )),
-                            Container(
-                                margin: EdgeInsets.only(right: 73),
-                                child: Text(
-                                  'Air France',
-                                  style: TextStyle(
-                                    fontSize: 15,
-                                  ),
-                                )),
-                            Container(
-                                margin: EdgeInsets.only(right: 90),
-                                child: Text(
-                                  '7h 30m',
-                                  style: TextStyle(
-                                    fontSize: 15,
-                                  ),
-                                )),
-                            Container(
-                                margin: EdgeInsets.only(right: 78),
-                                child: Text(
-                                  'Econmay',
-                                  style: TextStyle(
-                                    fontSize: 15,
-                                  ),
-                                )),
-                          ]),
-                        ),
-                        Text(
-                          "320",
-                          style: TextStyle(
-                              color: Colors.red,
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold),
-                        )
-                      ],
-                    ),
-                  ),
-                  Container(
-                    alignment: Alignment.center,
-                    margin: EdgeInsets.only(bottom: 30),
-                    padding: EdgeInsets.all(
-                        20
-                    ),
-                    decoration: BoxDecoration(
-                      color: Colors.black12,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Column(children: [
-                            Container(
-                                margin: EdgeInsets.only(left: 5),
-                                child: Text(
-                                  '06:30 - 15:00',
-                                  style: TextStyle(
-                                    fontSize: 25,
-                                  ),
-                                )),
-                            Container(
-                                margin: EdgeInsets.only(right: 73),
-                                child: Text(
-                                  'Air France',
-                                  style: TextStyle(
-                                    fontSize: 15,
-                                  ),
-                                )),
-                            Container(
-                                margin: EdgeInsets.only(right: 90),
-                                child: Text(
-                                  '7h 30m',
-                                  style: TextStyle(
-                                    fontSize: 15,
-                                  ),
-                                )),
-                            Container(
-                                margin: EdgeInsets.only(right: 78),
-                                child: Text(
-                                  'Econmay',
-                                  style: TextStyle(
-                                    fontSize: 15,
-                                  ),
-                                )),
-                          ]),
-                        ),
-                        Text(
-                          "320",
-                          style: TextStyle(
-                              color: Colors.red,
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold),
-                        )
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
+                          Expanded(
+                            child: Container(alignment: Alignment.centerRight,
+                              child: Text(
+                                snapshot.data![index]['price'].toString(),
+                                style: TextStyle(
+                                    color: Colors.red,
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    );
+                    // return Text(snapshot.data![index]['Country'].toString());
+                  }, itemCount: snapshot.data!.length);
+
+
+              }
+              else{
+                return Expanded(child: Container(alignment:Alignment.center,child: CircularProgressIndicator()));
+
+              }
+            },
+                future: callApi()),
           ),
+
+
           bottomNavigationBar: BottomNavigationBar(
             iconSize: 20,
             backgroundColor: Colors.white,
@@ -313,4 +163,13 @@ class Third extends StatelessWidget {
           )),
     );
   }
+}
+
+Future<dynamic> callApi() async {
+  http.Response res = await http.get(
+      Uri.parse('https://630ecbf3498924524a7fb8ff.mockapi.io/Faculties'));
+  dynamic map = jsonDecode(res.body.toString());
+  print(map);
+
+  return map;
 }
